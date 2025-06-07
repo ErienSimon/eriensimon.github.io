@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMARTVENT</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Plotly.js for charts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- D3.js for data manipulation (needed for dashboard.js) -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <!-- =================================================================
+    EXISTING LANDING PAGE CONTENT
+    ================================================================== -->
+    
+    <!-- Hero Section Wrapper for background -->
+    <div class="hero-wrapper section-container">
+        <div class="container">
+            <header>
+                <img src="logo.png" alt="SMARTVENT Logo" class="logo">
+            </header>
+            <main>
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="hero-text">
+                        <h1>Harness the future of ventilation</h1>
+                        <p>Unlock real-time insights into your building's air quality and ventilation needs with SmartVent. We're reducing energy consumption, ensuring occupant comfort, and driving down operational costs.</p>
+                        <button id="viewDemoBtn">View Product Demo</button>
+                    </div>
+                    <div class="hero-image">
+                        <img src="heroimage.png" alt="Building Overview Dashboard">
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- Rest of the content stays within the standard container -->
+    <div class="section-container">
+        <div class="container">
+            <main>
+                 <!-- Energy Consumption Section -->
+                <section class="energy-consumption">
+                    <div id="pie-chart-container"></div>
+                    <div class="energy-text">
+                        <p>In commercial office buildings, heating, ventilation, and air conditioning (HVAC) systems account for a significant share of total energy consumption.</p>
+                        <p class="source">(Department of the Environment and Energy, 2013)</p>
+                    </div>
+                </section>
+                
+                <!-- Ventilation Explanation Section -->
+                <section class="ventilation-explanation">
+                    <div class="ventilation-text">
+                        <div class="hvac-icon-container">
+                            <img src="hvacicon.png" alt="HVAC Icon">
+                        </div>
+                        <p>Yet most HVAC systems <strong>operate at a constant rate</strong>, ventilating as if every room is always full, regardless of real-time occupancy.</p>
+                        <p>This leads to over-ventilation during quiet hours and under-ventilation when spaces are crowded.</p>
+                    </div>
+                    <div class="ventilation-image">
+                        <img src="hvacimage.png" alt="Ventilation based on occupancy">
+                    </div>
+                </section>
+    
+                <!-- Mismatch Results Section -->
+                <section class="mismatch-results">
+                    <h2>This mismatch results in:</h2>
+                    <div class="mismatch-columns">
+                        <div class="mismatch-column">
+                            <img src="wastedenergy.png" alt="Wasted Energy Icon">
+                            <h3>Wasted Energy</h3>
+                            <p>Ventilating empty or lightly used rooms consumes unnecessary electricity. Over time, this leads to significant energy waste, driving up operational costs without delivering added benefit.</p>
+                        </div>
+                        <div class="mismatch-column">
+                            <img src="inconsistentairquality.png" alt="Inconsistent Air Quality Icon">
+                            <h3>Inconsistent Air Quality</h3>
+                            <p>When the system doesn't adjust to rising occupancy, indoor air can become stale and CO₂ levels can rise above healthy limits. This impacts comfort, concentration, and overall well-being for building occupants.</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <!-- START: New content from second file -->
+    <div class="new-content section-container">
+        <!-- New Demand-Control Ventilation Section -->
+        <div class="container mx-auto px-10 md:px-20 py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Left Column: Text Content -->
+                <div>
+                    <h1 class="text-5xl font-bold mb-6">What if your building could breathe only when it needs to?</h1>
+                    <h2 class="text-4xl font-bold leading-tight mb-4">
+                        <span class="text-smartvent-blue">Demand-Control Ventilation</span> makes that possible
+                    </h2>
+                    <p class="text-lg mb-6">
+                        Instead of running at a constant rate, DCV adjusts airflow based on <span class="text-smartvent-blue font-semibold">real-time occupancy</span> and <span class="text-smartvent-blue font-semibold">indoor air quality</span>, ensuring each space gets just the right amount of <span class="text-smartvent-blue font-semibold">fresh air</span>.
+                    </p>
+                    <div class="flex items-start gap-4 mt-8">
+                        <img src="co2miniicon.png" alt="CO2 Sensor Icon" class="w-16 h-16 flex-shrink-0">
+                        <p>
+                            At the heart of this system is the <span class="font-bold text-gray-700">CO2 sensor</span>, which tells the ventilation system when and how much to operate.
+                        </p>
+                    </div>
+                </div>
+                <!-- Right Column: Image Content -->
+                <div class="flex justify-center items-center">
+                    <img src="dcv demonstration.png" alt="DCV Demonstration" class="max-w-full h-auto rounded-lg">
+                </div>
+            </div>
+        </div>
+
+        <!-- New Why Monitor CO2 Section -->
+        <div class="container mx-auto px-10 md:px-20 py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <!-- Left Column: Text Content -->
+                <div>
+                    <h2 class="text-4xl font-bold leading-tight mb-4">Why Monitor CO₂?</h2>
+                    <p class="text-lg">
+                        Every time people breathe, they release carbon dioxide (CO₂) into the air. In closed spaces, CO₂ levels can build up quickly when many people are present and there’s not enough fresh air. That makes CO₂ a powerful indicator of two things:
+                    </p>
+                </div>
+                <!-- Right Column: Feature Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Occupancy Card -->
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gray-50">
+                                <img src="occupancyicon.png" alt="Occupancy Icon" class="h-10 w-10 mb-4">
+                                <h3 class="text-xl font-bold mb-2 text-left">Occupancy Levels</h3>
+                                <p class="text-left">Higher CO₂ means more people are in the room. Lower CO₂ usually means the space is empty or lightly used.</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p>By monitoring CO₂, DCV systems can estimate how many people are using the space without needing invasive cameras or motion detectors.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ventilation Card -->
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-gray-50">
+                            <img src="ventilationicon.png" alt="Ventilation Icon" class="h-10 w-10 mb-4">
+                                <h3 class="text-xl font-bold mb-2 text-left">Ventilation Performance</h3>
+                                <p class="text-left">When CO₂ levels rise too high, it means that fresh air is not circulating fast enough. This can lead to headaches, tiredness, and poor concentration.</p>
+                            </div>
+                            <div class="flip-card-back">
+                            <p>DCV uses this data to increase airflow when needed and scale back when it's not, maintaining both comfort and air quality.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-10 py-12 md:px-20 md:py-24">
+            
+            <!-- Header with Logo -->
+            <header class="mb-12 md:mb-16">
+                <img src="logo.png" alt="SmartVent Logo" class="h-8 w-auto">
+            </header>
+
+            <!-- Main content area with a two-column layout -->
+            <main class="smartvent-intro-grid">
+
+                <!-- Left Column: Text Content -->
+                <div class="smartvent-intro-text">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                        This is where <span class="text-smartvent-blue">SmartVent</span> comes in
+                    </h1>
+                    <p class="text-lg mb-4">
+                        Our cutting-edge solution provides the crucial intelligence that powers effective Demand-Control Ventilation. The SmartVent system is a powerful combination of advanced sensor technology and an intuitive, analytics-driven dashboard.
+                    </p>
+                    <p class="text-lg">
+                        SmartVent is designed to enhance your existing infrastructure. Our CO2 sensors feed critical data directly to the SmartVent Dashboard. This intelligence then empowers your current Building Management System (BMS) and HVAC equipment to operate more efficiently.
+                    </p>
+                </div>
+
+                <!-- Right Column: Image Content -->
+                <div class="smartvent-intro-image">
+                    <img src="new dashboard mockup.png" alt="SmartVent Dashboard and Monitor" class="w-full h-auto">
+                </div>
+
+            </main>
+        </div>
+
+        <!-- New Features Section -->
+        <div class="container mx-auto px-10 md:px-20 py-16">
+            
+            <!-- Main Title -->
+            <header class="mb-8">
+                <h1 class="text-4xl font-bold">Our Features</h1>
+            </header>
+
+            <!-- Main content area with grid layout -->
+            <main class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+
+                <!-- CO2 Sensor -->
+                <section class="lg:col-span-3 bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
+                    <img src="co2 sensor.png" alt="Our CO2 Sensor feature details">
+                </section>
+
+                <!-- Floor Plan Overview -->
+                <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
+                    <img src="floor plan overview.png" alt="Floor Plan Overview feature">
+                </section>
+
+                <!-- Proactive Alerts -->
+                <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
+                    <img src="proactive alerts.png" alt="Proactive Alerts feature">
+                </section>
+
+                <!-- Live CO2 Readings -->
+                <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
+                    <img src="live co2 readings.png" alt="Live CO2 Readings feature">
+                </section>
+                
+                <!-- Ventilation Log -->
+                <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
+                    <img src="ventilation log.png" alt="Ventilation Log feature">
+                </section>
+                
+                <!-- Historical Trends -->
+                <section class="lg:col-span-2 bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
+                    <img src="historic trends.png" alt="Historical Trends feature">
+                </section>
+
+            </main>
+        </div>
+    </div>
+    
+    <!-- START: Final content added from the last file -->
+    <div class="final-content-wrapper section-container">
+        <div class="container">
+            <div class="header-content-final">
+                <h1>How DCV Transformed an Office</h1>
+                <p class="main-intro">A commercial building in Sydney's CBD was struggling with high energy bills and frequent complaints about stuffy air. Last year, Demand-Control Ventilation (DCV) was installed across all floors. Here's what changed in the year following the installation:</p>
+            </div>
+
+            <!-- Energy Consumption -->
+            <div class="section">
+                <div class="text-content">
+                    <h2>Reduction in Energy Consumption</h2>
+                    <p>With a fixed HVAC system, energy consumption remains high throughout the day. In contrast, DCV, informed by SmartVent's data, adjusts airflow based on real-time needs, lowering power usage during off-peak hours.</p>
+                    <div class="stat-display">
+                        <div class="stat-number" id="avgSavings">0%</div>
+                        <div class="stat-label">average daily savings</div>
+                    </div>
+                </div>
+                 <div class="chart-container">
+                    <div id="energyChart"></div>
+                    <div class="legend-custom">
+                        <div class="legend-item"><div class="legend-color traditional"></div>Traditional HVAC</div>
+                        <div class="legend-item"><div class="legend-color dcv"></div>DCV System</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Air Quality -->
+            <div class="section reverse">
+                 <div class="chart-container">
+                    <div id="co2Chart"></div>
+                     <div class="legend-custom">
+                        <div class="legend-item"><div class="legend-color traditional"></div>Traditional HVAC</div>
+                        <div class="legend-item"><div class="legend-color dcv"></div>DCV System</div>
+                    </div>
+                </div>
+                <div class="text-content">
+                    <h2>Improved Indoor Air Quality</h2>
+                    <p>Before the upgrade, CO₂ levels fluctuated throughout the day, often spiking during peak occupancy. After DCV was introduced, with SmartVent's precise monitoring, air quality stayed within optimal ranges, helping reduce fatigue and increase comfort.</p>
+                    <div class="stat-display">
+                        <div class="stat-number" id="avgCO2Reduction">0%</div>
+                        <div class="stat-label">Reduces CO₂ Levels by</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Heatmap Section -->
+            <div class="section">
+                <div class="text-content">
+                     <h2>Balanced Ventilation Across All Areas</h2>
+                     <p>Prior to implementation, some areas consistently showed high CO₂ concentrations due to poor ventilation alignment with actual occupancy. After DCV was installed, guided by real-time insights, ventilation distribution became more responsive, resulting in better air distribution and fewer high-CO₂ hotspots.</p>
+                     <div class="heatmap-stats-grid">
+                         <div class="heatmap-stat-card">
+                             <div class="stat-number" id="avg-co2-heatmap">0</div>
+                             <div class="stat-label">Average CO₂</div>
+                         </div>
+                         <div class="heatmap-stat-card">
+                             <div class="stat-number" id="peak-co2-heatmap">0</div>
+                             <div class="stat-label">Peak CO₂</div>
+                         </div>
+                         <div class="heatmap-stat-card">
+                             <div class="stat-number" id="min-co2-heatmap">0</div>
+                             <div class="stat-label">Min CO₂</div>
+                         </div>
+                     </div>
+                </div>
+                 <div class="chart-container">
+                    <div class="toggle-buttons">
+                        <button id="hvac-btn" class="toggle-button active">Before</button>
+                        <button id="dcv-btn" class="toggle-button">After</button>
+                    </div>
+                    <div id="heatmapChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="summary-section section-container">
+        <div class="container">
+            <h2>In summary, this is what we offer:</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <img src="Improved Indoor Air Quality.png" alt="Wind icon">
+                    <h3>Improved Indoor Air Quality</h3>
+                    <p>By increasing ventilation when CO₂ levels rise, SmartVent ensures fresher, healthier air for occupants.</p>
+                </div>
+                <div class="benefit-card">
+                    <img src="Reduced Carbon Footprint.png" alt="Leaf icon">
+                    <h3>Reduced Carbon Footprint</h3>
+                    <p>Lower energy consumption means fewer emissions, making buildings more environmentally friendly.</p>
+                </div>
+                 <div class="benefit-card">
+                    <img src="Enhanced Productivity.png" alt="Happy face icon">
+                    <h3>Enhanced Productivity</h3>
+                    <p>Maintaining optimal air quality and ventilation helps prevent drowsiness, discomfort, and poor concentration linked to elevated CO₂ levels.</p>
+                </div>
+                 <div class="benefit-card">
+                    <img src="Lower Operational Costs.png" alt="Dollar sign icon">
+                    <h3>Lower Operational Costs</h3>
+                    <p>By minimizing ventilation when demand is low, SmartVent helps reduce HVAC wear and tear and lowers energy bills, resulting in long-term cost savings.</p>
+                </div>
+                 <div class="benefit-card">
+                    <img src="Significant Energy Savings.png" alt="Lightning bolt icon">
+                    <h3>Significant Energy Savings</h3>
+                    <p>SmartVent reduces unnecessary ventilation by providing data that allows adjustment of airflow based on real-time needs, cutting down energy use.</p>
+                </div>
+                <div></div> <!-- Empty div for grid alignment -->
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================
+    NEW DASHBOARD CONTENT
+    ================================================================== -->
+    <div id="live-dashboard" class="section-container dashboard-intro">
+        <div class="container">
+            <h1>See SmartVent in Action: Live Product Demo</h1>
+            <p>Experience the power of real-time air quality monitoring yourself. Our interactive dashboard demonstrates how SmartVent provides immediate insights into your building's environment and ventilation performance.</p>
+        </div>
+    </div>
+    <div class="dashboard-container section-container">
+        <!-- Left Pane: Contains building overview, air quality, and Occupancy -->
+        <aside class="left-pane">
+            <section class="widget building-overview">
+                <h2 class="widget-title">Building Overview
+                    <span class="info-tooltip" data-tooltip="Displays the real-time CO₂ levels in each zone. Color-coded to reflect air quality: green (excellent), yellow (moderate), red (high). Click a zone to view detailed metrics.">
+                        <img src="info-circle.png" alt="Info">
+                    </span>
+                </h2>
+                <div id="zoneGrid" class="zone-grid">
+                    <!-- Zone tiles will be populated by JavaScript -->
+                </div>
+                <div class="heatmap-legend">
+                    <span class="legend-item"><span class="legend-color co2-excellent"></span>Excellent</span>
+                    <span class="legend-item"><span class="legend-color co2-moderate"></span>Moderate</span>
+                    <span class="legend-item"><span class="legend-color co2-high"></span>High</span>
+                    <span class="legend-item"><span class="legend-color co2-unknown"></span>N/A</span>
+                </div>
+            </section>
+
+            <section class="widget air-quality-widget">
+                <h2 class="widget-title">Air Quality
+                    <span class="info-tooltip" data-tooltip="Current CO₂ level in this zone. Gauge shows if air quality is excellent (<600 ppm), moderate (600–1000 ppm), or poor (>1000 ppm).">
+                        <img src="info-circle.png" alt="Info">
+                    </span>
+                </h2>
+                <div id="airQualityGauge" class="metric-gauge-placeholder"></div>
+                <p id="airQualityStatus" class="gauge-label">--</p>
+            </section>
+
+            <section class="widget occupancy-display-widget">
+                <div class="widget-icon-container icon-occupancy">
+                    <img src="users.png" alt="Occupancy Icon">
+                </div>
+                <h3 class="widget-title">Occupancy Status
+                    <span class="info-tooltip" data-tooltip="Estimates how occupied the zone is based on CO₂ levels. Helps determine if the ventilation system is responding appropriately to real-time usage.">
+                        <img src="info-circle.png" alt="Info">
+                    </span>
+                </h3>
+                <p id="occupancyStatus" class="status-text">--</p> 
+            </section>
+        </aside>
+
+        <!-- Right Pane: Contains historical trends, KPIs, system snapshot (modified), alerts, and logs -->
+        <main class="right-pane">
+            <section class="widget historical-trends">
+                <div class="trends-header">
+                    <h2 class="widget-title">Historical Trends
+                        <span class="info-tooltip" data-tooltip="Shows CO₂ and a selectable metric over time. Use the dropdown to switch metrics and the time range buttons to view data from the past day, week, or more.">
+                            <img src="info-circle.png" alt="Info">
+                        </span>
+                    </h2>
+                    <div id="timeWindowButtons" class="time-window-buttons">
+                        <button data-window="1D">1D</button>
+                        <button data-window="1W">1W</button>
+                        <button data-window="1M" class="active">1M</button>
+                        <button data-window="3M">3M</button>
+                        <button data-window="1Y">1Y</button>
+                    </div>
+                </div>
+                <div id="historicalTrendsChart" class="chart-container">
+                    <!-- Historical trends chart will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <section class="widget kpi-cards-container-widget">
+                 <h2 class="widget-title">Key Performance Indicators (Last 24h)</h2>
+                <div class="kpi-cards-container">
+                    <div class="kpi-card kpi-electricity">
+                        <div class="widget-icon-container icon-electricity">
+                            <img src="flash.png" alt="Electricity Icon">
+                        </div>
+                        <h4>Energy Use<span class="info-tooltip" data-tooltip="Total electricity consumption for the selected zone over the past day. Compared against benchmark thresholds for efficient energy use."><img src="info-circle.png" alt="Info"></span></h4>
+                        <p id="kpiElectricityValue">-- kWh</p>
+                        <p id="kpiElectricityChange" class="change-indicator">--%</p>
+                    </div>
+                    <div class="kpi-card kpi-cost">
+                        <div class="widget-icon-container icon-cost">
+                            <img src="currency-dollar-circle.png" alt="Cost Icon">
+                        </div>
+                        <h4>Estimated Cost<span class="info-tooltip" data-tooltip="Estimated daily energy cost based on current usage. Helps identify opportunities to reduce operational expenses."><img src="info-circle.png" alt="Info"></span></h4>
+                        <p id="kpiCostValue">-- AUD</p>
+                        <p id="kpiCostChange" class="change-indicator">--%</p>
+                    </div>
+                    <div class="kpi-card kpi-carbon">
+                        <div class="widget-icon-container icon-carbon">
+                            <img src="Leaf.png" alt="Carbon Emissions Icon">
+                        </div>
+                        <h4>Carbon Emissions<span class="info-tooltip" data-tooltip="Approximate CO₂ emissions from energy use in this zone. Lower values indicate a more sustainable and environmentally-friendly building."><img src="info-circle.png" alt="Info"></span></h4>
+                        <p id="kpiCarbonValue">-- kg</p>
+                        <p id="kpiCarbonChange" class="change-indicator">--%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Container for the bottom section of the right pane -->
+            <div class="right-pane-bottom-content">
+                <section class="widget mini-cards-container-widget system-snapshot-widget">
+                    <h2 class="widget-title">System Status Details
+                        <span class="info-tooltip" data-tooltip="Provides a snapshot of the key ventilation system components for the selected zone.">
+                            <img src="info-circle.png" alt="Info">
+                        </span>
+                    </h2> 
+                    <div class="mini-cards-container system-snapshot-mini-cards"> 
+                        <div class="mini-card">
+                            <h5>AHU Fan Speed<span class="info-tooltip" data-tooltip="Indicates how hard the Air Handling Unit (AHU) is working to circulate air. Adjusts dynamically in response to air quality data."><img src="info-circle.png" alt="Info"></span></h5>
+                            <p id="ahuFanSpeedMini">--%</p>
+                        </div>
+                        <div class="mini-card">
+                            <h5>Fresh-Air Damper<span class="info-tooltip" data-tooltip="Shows the percentage the damper is open to allow outdoor air in. Higher values mean more ventilation to dilute indoor CO₂."><img src="info-circle.png" alt="Info"></span></h5>
+                            <p id="freshAirDamper">--% Open</p>
+                        </div>
+                        <div class="mini-card">
+                            <h5>Ventilation<span class="info-tooltip" data-tooltip="System’s current ventilation response. Displays whether airflow is optimal, reduced, or increased based on air quality and occupancy."><img src="info-circle.png" alt="Info"></span></h5>
+                            <p id="ventilationStatusMini">--</p>
+                        </div> 
+                    </div>
+                </section>
+                
+                <section class="widget alerts-status"> 
+                    <h3 class="widget-title">Building-Wide Alerts
+                        <span class="info-tooltip" data-tooltip="Summarizes current alerts across the building, such as under-ventilation or unusually high CO₂ levels. No alerts mean the system is functioning well.">
+                            <img src="info-circle.png" alt="Info">
+                        </span>
+                    </h3>
+                    <ul id="alertsList" class="alerts-list"><li>No active alerts.</li></ul>
+                </section>
+
+                <section class="widget ventilation-log"> 
+                    <h3 class="widget-title">Ventilation Response Log
+                        <span class="info-tooltip" data-tooltip="Real-time log of ventilation system actions shows how and when the system adjusts airflow in response to changing CO₂ levels.">
+                            <img src="info-circle.png" alt="Info">
+                        </span>
+                    </h3>
+                    <ul id="ventilationLogList"><li>No events yet.</li></ul>
+                    <button id="markIssueButton">Mark Zone Issue</button>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Final CTA Section -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Get Started with SmartVent Today</h2>
+            <p>Contact us to book a demo, explore integration options, or learn how SmartVent can help you meet your building performance and sustainability goals.</p>
+        </div>
+    </div>
+
+
+    <!-- Toast notification for user feedback -->
+    <div id="toastNotification" class="toast"></div>
+    
+    <!-- Link to the external JavaScript files -->
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
