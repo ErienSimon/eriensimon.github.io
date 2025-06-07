@@ -4,29 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMARTVENT</title>
-    <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="style.css">
-    <!-- Plotly.js for charts -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- D3.js for data manipulation (needed for dashboard.js) -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
 
-    <!-- =================================================================
-    EXISTING LANDING PAGE CONTENT
-    ================================================================== -->
-    
-    <!-- Hero Section Wrapper for background -->
     <div class="hero-wrapper section-container">
         <div class="container">
             <header>
                 <img src="logo.png" alt="SMARTVENT Logo" class="logo">
             </header>
             <main>
-                <!-- Hero Section -->
                 <section class="hero">
                     <div class="hero-text">
                         <h1>Harness the future of ventilation</h1>
@@ -41,12 +31,10 @@
         </div>
     </div>
     
-    <!-- Rest of the content stays within the standard container -->
     <div class="section-container">
         <div class="container">
             <main>
-                 <!-- Energy Consumption Section -->
-                <section class="energy-consumption">
+                 <section class="energy-consumption">
                     <div id="pie-chart-container"></div>
                     <div class="energy-text">
                         <p>In commercial office buildings, heating, ventilation, and air conditioning (HVAC) systems account for a significant share of total energy consumption.</p>
@@ -54,7 +42,6 @@
                     </div>
                 </section>
                 
-                <!-- Ventilation Explanation Section -->
                 <section class="ventilation-explanation">
                     <div class="ventilation-text">
                         <div class="hvac-icon-container">
@@ -68,7 +55,6 @@
                     </div>
                 </section>
     
-                <!-- Mismatch Results Section -->
                 <section class="mismatch-results">
                     <h2>This mismatch results in:</h2>
                     <div class="mismatch-columns">
@@ -88,12 +74,9 @@
         </div>
     </div>
     
-    <!-- START: New content from second file -->
     <div class="new-content section-container">
-        <!-- New Demand-Control Ventilation Section -->
         <div class="container mx-auto px-10 md:px-20 py-16">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <!-- Left Column: Text Content -->
                 <div>
                     <h1 class="text-5xl font-bold mb-6">What if your building could breathe only when it needs to?</h1>
                     <h2 class="text-4xl font-bold leading-tight mb-4">
@@ -109,26 +92,21 @@
                         </p>
                     </div>
                 </div>
-                <!-- Right Column: Image Content -->
                 <div class="flex justify-center items-center">
                     <img src="dcv demonstration.png" alt="DCV Demonstration" class="max-w-full h-auto rounded-lg">
                 </div>
             </div>
         </div>
 
-        <!-- New Why Monitor CO2 Section -->
         <div class="container mx-auto px-10 md:px-20 py-16">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                <!-- Left Column: Text Content -->
                 <div>
                     <h2 class="text-4xl font-bold leading-tight mb-4">Why Monitor CO₂?</h2>
                     <p class="text-lg">
                         Every time people breathe, they release carbon dioxide (CO₂) into the air. In closed spaces, CO₂ levels can build up quickly when many people are present and there’s not enough fresh air. That makes CO₂ a powerful indicator of two things:
                     </p>
                 </div>
-                <!-- Right Column: Feature Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Occupancy Card -->
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front bg-gray-50">
@@ -141,7 +119,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Ventilation Card -->
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front bg-gray-50">
@@ -160,15 +137,12 @@
 
         <div class="container mx-auto px-10 py-12 md:px-20 md:py-24">
             
-            <!-- Header with Logo -->
             <header class="mb-12 md:mb-16">
                 <img src="logo.png" alt="SmartVent Logo" class="h-8 w-auto">
             </header>
 
-            <!-- Main content area with a two-column layout -->
             <main class="smartvent-intro-grid">
 
-                <!-- Left Column: Text Content -->
                 <div class="smartvent-intro-text">
                     <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
                         This is where <span class="text-smartvent-blue">SmartVent</span> comes in
@@ -181,7 +155,6 @@
                     </p>
                 </div>
 
-                <!-- Right Column: Image Content -->
                 <div class="smartvent-intro-image">
                     <img src="new dashboard mockup.png" alt="SmartVent Dashboard and Monitor" class="w-full h-auto">
                 </div>
@@ -189,43 +162,34 @@
             </main>
         </div>
 
-        <!-- New Features Section -->
         <div class="container mx-auto px-10 md:px-20 py-16">
             
-            <!-- Main Title -->
             <header class="mb-8">
                 <h1 class="text-4xl font-bold">Our Features</h1>
             </header>
 
-            <!-- Main content area with grid layout -->
             <main class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
 
-                <!-- CO2 Sensor -->
                 <section class="lg:col-span-3 bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
                     <img src="co2 sensor.png" alt="Our CO2 Sensor feature details">
                 </section>
 
-                <!-- Floor Plan Overview -->
                 <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
                     <img src="floor plan overview.png" alt="Floor Plan Overview feature">
                 </section>
 
-                <!-- Proactive Alerts -->
                 <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
                     <img src="proactive alerts.png" alt="Proactive Alerts feature">
                 </section>
 
-                <!-- Live CO2 Readings -->
                 <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
                     <img src="live co2 readings.png" alt="Live CO2 Readings feature">
                 </section>
                 
-                <!-- Ventilation Log -->
                 <section class="bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
                     <img src="ventilation log.png" alt="Ventilation Log feature">
                 </section>
                 
-                <!-- Historical Trends -->
                 <section class="lg:col-span-2 bg-white rounded-2xl shadow-sm overflow-hidden feature-card">
                     <img src="historic trends.png" alt="Historical Trends feature">
                 </section>
@@ -234,7 +198,6 @@
         </div>
     </div>
     
-    <!-- START: Final content added from the last file -->
     <div class="final-content-wrapper section-container">
         <div class="container">
             <div class="header-content-final">
@@ -242,7 +205,6 @@
                 <p class="main-intro">A commercial building in Sydney's CBD was struggling with high energy bills and frequent complaints about stuffy air. Last year, Demand-Control Ventilation (DCV) was installed across all floors. Here's what changed in the year following the installation:</p>
             </div>
 
-            <!-- Energy Consumption -->
             <div class="section">
                 <div class="text-content">
                     <h2>Reduction in Energy Consumption</h2>
@@ -261,7 +223,6 @@
                 </div>
             </div>
 
-            <!-- Air Quality -->
             <div class="section reverse">
                  <div class="chart-container">
                     <div id="co2Chart"></div>
@@ -280,7 +241,6 @@
                 </div>
             </div>
             
-            <!-- Heatmap Section -->
             <div class="section">
                 <div class="text-content">
                      <h2>Balanced Ventilation Across All Areas</h2>
@@ -340,14 +300,10 @@
                     <h3>Significant Energy Savings</h3>
                     <p>SmartVent reduces unnecessary ventilation by providing data that allows adjustment of airflow based on real-time needs, cutting down energy use.</p>
                 </div>
-                <div></div> <!-- Empty div for grid alignment -->
-            </div>
+                <div></div> </div>
         </div>
     </div>
 
-    <!-- =================================================================
-    NEW DASHBOARD CONTENT
-    ================================================================== -->
     <div id="live-dashboard" class="section-container dashboard-intro">
         <div class="container">
             <h1>See SmartVent in Action: Live Product Demo</h1>
@@ -355,7 +311,6 @@
         </div>
     </div>
     <div class="dashboard-container section-container">
-        <!-- Left Pane: Contains building overview, air quality, and Occupancy -->
         <aside class="left-pane">
             <section class="widget building-overview">
                 <h2 class="widget-title">Building Overview
@@ -364,8 +319,7 @@
                     </span>
                 </h2>
                 <div id="zoneGrid" class="zone-grid">
-                    <!-- Zone tiles will be populated by JavaScript -->
-                </div>
+                    </div>
                 <div class="heatmap-legend">
                     <span class="legend-item"><span class="legend-color co2-excellent"></span>Excellent</span>
                     <span class="legend-item"><span class="legend-color co2-moderate"></span>Moderate</span>
@@ -397,7 +351,6 @@
             </section>
         </aside>
 
-        <!-- Right Pane: Contains historical trends, KPIs, system snapshot (modified), alerts, and logs -->
         <main class="right-pane">
             <section class="widget historical-trends">
                 <div class="trends-header">
@@ -415,8 +368,7 @@
                     </div>
                 </div>
                 <div id="historicalTrendsChart" class="chart-container">
-                    <!-- Historical trends chart will be populated by JavaScript -->
-                </div>
+                    </div>
             </section>
 
             <section class="widget kpi-cards-container-widget">
@@ -449,7 +401,6 @@
                 </div>
             </section>
 
-            <!-- Container for the bottom section of the right pane -->
             <div class="right-pane-bottom-content">
                 <section class="widget mini-cards-container-widget system-snapshot-widget">
                     <h2 class="widget-title">System Status Details
@@ -495,7 +446,6 @@
         </main>
     </div>
     
-    <!-- Final CTA Section -->
     <div class="cta-section">
         <div class="container">
             <h2>Get Started with SmartVent Today</h2>
@@ -504,10 +454,8 @@
     </div>
 
 
-    <!-- Toast notification for user feedback -->
     <div id="toastNotification" class="toast"></div>
     
-    <!-- Link to the external JavaScript files -->
     <script src="script.js"></script>
     <script src="dashboard.js"></script>
 </body>
